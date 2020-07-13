@@ -341,6 +341,31 @@ const Button = styled.button`
 
 The same can be done when you `applyResponsiveStyleModifiers` _(deprecated)_.
 
+## TypeScript example
+
+```ts
+import { applyStyleModifiers, WithModifiers, ModifiersConfig } from "styled-components-modifiers"
+
+// Example of modifiers with typing
+const MODAL_MODIFIERS: ModifiersConfig  = {}
+
+// Example of a styled component optionally accepting "modifiers" prop
+const MyStyledDiv = styled.div<WithModifiers>`
+  max-width: 800px;
+  ${applyStyleModifiers(MODAL_MODIFIERS)}
+`;
+
+// Example of a custom component optionally accepting modifiers
+interface ModalProps extends WithModifiers {
+  children: React.ReactNode;
+}
+
+// Will be typed as expected
+export const MyComponent = ({ children, modifiers }: MyComponentProps) => (
+  <MyStyledWrapper modifiers={modifiers}>{children}</MyStyledWrapper>
+);
+```
+
 ## Built with Styled Components Modifiers
 
 Here's your chance to showcase work you are proud of! Feel free to add a link to
